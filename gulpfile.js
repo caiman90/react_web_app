@@ -6,6 +6,8 @@ var open = require('gulp-open');  // Open URL in the browser
 var browserify = require('browserify'); // bundle js files
 var reactify = require('reactify'); // Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // use text streams with Gulp
+var concat = require('gulp-concat'); // Concatenates files
+var lint = require('gulp-eslint'); // Lint js files,jsx included
 
 // CONFIG
 
@@ -15,7 +17,12 @@ var config = {
     paths:{
         html:'./src/*.html',
         dist:'./dist',
+        css: [
+          'node_modules/bootstrap/dist/css/bootstrap.min.css',
+          'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+        ],
         js:'./src/**/*.js',
+        images:'./src/images/*',
         mainJs:'./src/main.js'
     }
 };
@@ -52,9 +59,27 @@ gulp.task('js',function () {
         .pipe(connect.reload())
 });
 
-gulp.task('watch',function(){
-    gulp.watch(config.paths.html,['html']);
-    gulp.watch(config.paths.js,['js']);
+gulp.task('css',function () {
+    gulp.src(config.paths.css).
+        pipe(concat('bundle.css')).
+        pipe(gulp.dest(config.paths.dist + '/css'))
 });
 
-gulp.task('default',['html','js','open','watch']);
+gulp.task('images',function () {
+    return gulp.src(config.paths.images)
+        .pipe(gulp.dest(config.paths.dist + '/images'))
+        .pipe(connect.reload());
+});
+
+gulp.task('watch',function(){
+    gulp.watch(config.paths.html,['html']);
+    gulp.watch(config.paths.js,['js','lint']);
+});
+
+gulp.task('lint',function () {
+    return gulp.src(config.paths.js)
+        .pipe(lint({config:'eslint.config.json'}))
+        .pipe(lint.format());
+
+});
+gulp.task('default',['html','js','css','images','lint','open','watch']);
