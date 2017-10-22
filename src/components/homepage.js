@@ -4,6 +4,8 @@
 "use strict";
 
 var React = require('react');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Home = React.createClass({
    render: function () {
@@ -11,7 +13,9 @@ var Home = React.createClass({
            <div className="jumbotron">
                <h1>Rejhan Hrnjic</h1>
                <p> I am young developer eager to learn </p>
+               <Link to="about" className="btn btn-primary btn-lg">Learn More</Link>
            </div>
+
        );
    }
 });
