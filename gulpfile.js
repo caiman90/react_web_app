@@ -8,11 +8,12 @@ var reactify = require('reactify'); // Transforms React JSX to JS
 var source = require('vinyl-source-stream'); // use text streams with Gulp
 var concat = require('gulp-concat'); // Concatenates files
 var lint = require('gulp-eslint'); // Lint js files,jsx included
+var LiveServer = require('gulp-live-server');
 
 // CONFIG
 
 var config = {
-    port:9005,
+    port:3000,
     devBaseUrl:'http://localhost',
     paths:{
         html:'./src/*.html',
@@ -29,16 +30,12 @@ var config = {
 
 // start a local development server
 
-gulp.task('connect',function(){
-    connect.server({
-        root:['dist'],
-        port: config.port,
-        base: config.devBaseUrl ,
-        livereload:true
-    });
+gulp.task('live-server',function () {
+    var server = new LiveServer(__dirname + '/server.js');
+    server.start();
 });
 
-gulp.task('open',['connect'],function(){
+gulp.task('open',function(){
     gulp.src('dist/index.html')
         .pipe(open({uri : config.devBaseUrl + ':' + config.port + '/'}));
 });
@@ -82,4 +79,4 @@ gulp.task('lint',function () {
         .pipe(lint.format());
 
 });
-gulp.task('default',['html','js','css','images','lint','open','watch']);
+gulp.task('default',['live-server','html','js','css','images','lint','watch','open']);
