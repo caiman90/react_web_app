@@ -11,8 +11,8 @@ var Home = React.createClass({
    render: function () {
        return (
            <div className="jumbotron">
-               <h1>Rejhan Hrnjic</h1>
-               <p> I am young developer eager to learn </p>
+               <h1>Rejhan</h1>
+               <p>Simple web app react & node</p>
                <Link to="about" className="btn btn-primary btn-lg">Learn More</Link>
            </div>
 

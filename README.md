@@ -28,10 +28,23 @@ Following technologies are used in web application:
 
 ### Installing
 
+Simply clone this repo using
+
+    git clone https://github.com/caiman90/Softhouse.git
+
+then install the Node modules with
+
+    npm install
+
+then just start gulp from command line
+
+    gulp
+
+
 ###
 Points of improvement :
 use bower for client side dependecies
-use node for server side
+use npm for server side
 
 Coming soon :
 passport integration
