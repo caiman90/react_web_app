@@ -1,6 +1,6 @@
 # React
 
-Small mocked web application with React
+Small web application with react and node
 
 ## Getting Started
 
@@ -28,4 +28,12 @@ Following technologies are used in web application:
 
 ### Installing
 
-Coming soon
+###
+Points of improvement :
+use bower for client side dependecies
+use node for server side
+
+Coming soon :
+passport integration
+mongo db
+real data
