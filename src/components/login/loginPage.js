@@ -5,8 +5,13 @@
 
 var React = require('react');
 var LoginForm = require('./loginForm');
+var Router = require('react-router');
+var toastr = require('toastr');
 
 var LoginPage = React.createClass({
+    mixins: [
+       Router.Navigation
+    ],
     getInitialState: function () {
             return {
                user: {username: '', password: '', id: ''}
@@ -21,7 +26,9 @@ var LoginPage = React.createClass({
     login: function (event) {
          event.preventDefault();
          // implement service call
-         alert(this.state.user);
+         toastr.success("Logged in successfully");
+
+         this.transitionTo('about');
     },
     render: function () {
         return (
