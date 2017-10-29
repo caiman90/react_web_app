@@ -1,8 +1,7 @@
 /**
  * Created by rejhan on 18.10.2017.
  */
-/*eslint-disable strict*/ // disabling check becasue of Jquery global which is actaully needed for bootstrap
-
+"use strict";
 var React = require('react');
 var Router = require('react-router');
 var routes = require('./routes');
