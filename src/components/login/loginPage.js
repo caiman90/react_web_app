@@ -14,7 +14,8 @@ var LoginPage = React.createClass({
     ],
     getInitialState: function () {
             return {
-               user: {username: '', password: '', id: ''}
+               user: {username: '', password: '', id: ''},
+               errors: {}
             };
     },
     setUserState: function (event) {
@@ -23,9 +24,28 @@ var LoginPage = React.createClass({
          this.state.user[field] = value;
          return this.setState({user: this.state.user});
     },
+    loginFormValid: function () {
+        var loginFormValid = true;
+        this.state.errors = {};
+
+        if(this.state.user.username.length < 3){
+            this.state.errors.username = 'Userame must be at least 3 characters';
+            loginFormValid = false;
+        }
+
+        if(this.state.user.password.length < 5){
+            this.state.errors.password = 'Password must be at least 5 characters';
+            loginFormValid = false;
+        }
+        this.setState({errors: this.state.errors});
+        return loginFormValid;
+    },
     login: function (event) {
          event.preventDefault();
          // implement service call
+         if(!this.loginFormValid()){
+             return;
+         }
          toastr.success("Logged in successfully");
 
          this.transitionTo('about');
@@ -36,6 +56,7 @@ var LoginPage = React.createClass({
                 <LoginForm user={this.state.user}
                            onChange={this.setUserState}
                            onSave={this.login}
+                           errors={this.state.errors}
                 />
             </div>
         );

@@ -12,11 +12,13 @@ var LoginForm = React.createClass({
                     <Input name="username"
                            label="Username"
                            value={this.props.user.username}
-                           onChange={this.props.onChange} />
+                           onChange={this.props.onChange}
+                           error={this.props.errors.username} />
                     <Input name="password"
                            label="Password"
                            value={this.props.user.password}
-                           onChange={this.props.onChange} />
+                           onChange={this.props.onChange}
+                           error={this.props.errors.password} />
 
                     <input type="submit" value="Log in" className="btn btn-default" onClick={this.props.onSave} />
                 </form>
