@@ -30,7 +30,7 @@ Following technologies are used in web application:
 
 Simply clone this repo using
 
-    git clone https://github.com/caiman90/Softhouse.git
+    git clone https://github.com/caiman90/react_web_app.git
 
 then install the Node modules with
 

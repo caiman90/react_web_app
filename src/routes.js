@@ -12,7 +12,7 @@ var NotFoundRoute = Router.NotFoundRoute;
 var routes = (
     <Route name="app" path="/" handler={ require('./components/app') }>
         <DefaultRoute handler={ require('./components/homepage') }/>
-        <Route name="authors" handler={ require('./components/authors/author') }/>
+        <Route name="login" handler={ require('./components/login/loginPage') }/>
         <Route name="about" handler={ require('./components/about/aboutpage') }/>
         <NotFoundRoute handler={ require('./components/notFoundPage') }/>
     </Route>
