@@ -4,6 +4,12 @@ var React = require('react');
 var Input = require('../common/textInput');
 
 var LoginForm = React.createClass({
+    propTypes: {
+            user: React.PropTypes.object.isRequired,
+            onChange: React.PropTypes.func.isRequired,
+            onSave: React.PropTypes.func.isRequired,
+            errors: React.PropTypes.object
+    },
     render: function() {
         return (
             <div className="login jumbotron center-block">
